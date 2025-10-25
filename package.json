@@ -1,0 +1,36 @@
+{
+  "name": "nexus-ecosystem",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Unified business tools ecosystem: Sales CRM, Finance Analytics, Testing Hub",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "test:unit": "npm --prefix packages/auth test",
+    "test:unit:watch": "npm --prefix packages/auth run test:watch",
+    "test:integration": "npx jest apps/web/__tests__/integration apps/web/__tests__/security",
+    "k6:auth-load": "k6 run tests/load/auth-load.js",
+    "setup:stripe": "tsx scripts/setup-stripe-products.ts"
+  },
+  "dependencies": {
+    "stripe": "^14.0.0"
+  },
+  "devDependencies": {
+    "turbo": "^2.3.3",
+    "prettier": "^3.3.3",
+    "typescript": "^5.7.2",
+    "tsx": "^4.17.0",
+    "dotenv": "^16.4.5"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  }
+}
